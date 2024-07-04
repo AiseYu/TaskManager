@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Default{% endblock %} </title>
+    <link rel="stylesheet" type="text/css" href="/CSS/base.css">
+</head>
+<body>
+    <div class="navigation">
+    <h1 class="header">Task Manager</h1>
+    <a href="{{url_for('signup')}}" ><button class="navigation_button">Sign Up</button></a>
+    <a href="{{url_for('login')}}"><button class="navigation_button">Login</button></a>
+    {% if current_user.is_authenticated %}
+        <a href="{{url_for('logout')}}"><button class="navigation_button">Logout</button></a>
+    {% endif %}
+    </div>
+    {% block content %}Default Content{% endblock %}
+
+</body>
+</html>

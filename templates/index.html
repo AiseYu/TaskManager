@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+
+
+
+    {% if current_user.is_authenticated %}
+
+        <h3>Hello, {{current_user.username}}</h3>
+
+        <h1>Task List</h1>
+        <a href="{{ url_for('add_task') }}"><button>Add Task</button></a>
+        <div>
+            {% for task in tasks %}
+            <div class="task_element">
+                <h3 style="display: inline;">{{ task.title }}</h3>
+                <p style="display: inline;">{{ task.description }}</p>
+                <a href="{{ url_for('edit_task', task_id=task.taskid) }}"><button>Update</button></a>
+                <form action="{{ url_for('delete_task', task_id=task.taskid) }}" method="POST" style="display:inline;">
+                <button type="submit">Delete</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    
+    {% else %}
+
+        <h3>Please log in to continue</h3>
+
+    {% endif %}
+
+    
+
+
+{% endblock %}
+
